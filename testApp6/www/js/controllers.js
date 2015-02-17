@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
 	
 	//document.getElementById("info").innerHTML = cordova.file.applicationDirectory+'www/map/';
 	L.tileLayer('/map/{z}/{x}/{y}.png',{
-		maxZoom: 18  
+		maxZoom: 20  
 	}).addTo(map);			
 				
 		var map = L.map('map-canvas').setView([45.423, -75.679], 13);
