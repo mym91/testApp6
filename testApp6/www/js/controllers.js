@@ -2,18 +2,19 @@
 angular.module('starter.controllers', [])
 
 .controller('MapCtrl', function($scope) {	
-	
+	/*
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
-		alert(fileSystem.name);
-		alert(fileSystem.root.name);
-		document.getElementById("info").innerHTML = fileSystem.name+'www/map/';
+		//alert(fileSystem.name);
+		//alert(fileSystem.root.name);
 	}, null);
+	*/
+	document.getElementById("info").innerHTML = '1<img src="/map/16/34477/42572.png" alt="Bild" />' ;
 	
-	var map = L.map('map').setView([47.331287, 9.408071], 16);
+	var map = L.map('map');
 	
 	//document.getElementById("info").innerHTML = cordova.file.applicationDirectory+'www/map/';
-	L.tileLayer('map/{z}/{x}/{y}.png',{
-		maxZoom: 20  
+	L.tileLayer('/map/{z}/{x}/{y}.png',{
+		maxZoom: 18  
 	}).addTo(map);				
 })
 	
