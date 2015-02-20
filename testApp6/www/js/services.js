@@ -52,45 +52,87 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Friends', function() {
+.factory('Places', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var friends = [{
+  
+ var places = [{
     id: 0,
-    name: 'Ben Sparrow',
-    notes: 'Enjoys drawing things',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    name: 'Café Fässler',
+    lat: 47.330841,
+    lng: 9.409084,
+    info: '<p>Café mit eigener Chocolaterie Manufactur</p>',
+	cat: 1
   }, {
     id: 1,
-    name: 'Max Lynx',
-    notes: 'Odd obsession with everything',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+    name: 'Drei König',
+    lat: 47.331019,
+    lng: 9.408550,
+    info: '<p>Café und Bäckerei</p>',
+	cat: 1
   }, {
     id: 2,
-    name: 'Andrew Jostlen',
-    notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
+    name: 'Gass 17',
+    lat: 47.330613,
+    lng: 9.409521,
+    info: '<p>Café und Bäckerei</p>',
+	cat: 1
   }, {
     id: 3,
-    name: 'Adam Bradleyson',
-    notes: 'I think he needs to buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+    name: 'Mountain',
+    lat: 47.330339,
+    lng: 9.408706,
+    info: '<p>Bar</p>',
+	cat: 1
   }, {
     id: 4,
-    name: 'Perry Governor',
-    notes: 'Just the nicest guy',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
-  }];
-
+    name: 'Landsgemeindeplatz',
+    lat: 47.331611,
+    lng: 9.407531,
+    info: '<p>Bar</p>',
+	cat: 2
+  }, {
+    id: 5,
+    name: 'Concordia',
+    lat: 47.330615,
+    lng: 9.407606,
+    info: '<p>Bar</p>',
+	cat: 2
+  }, {
+    id: 6,
+    name: 'Kirche St. Mauritius',
+    lat: 47.330924,
+    lng: 9.410245,
+    info: '<p>Bar</p>',
+	cat: 3
+  }, {
+    id: 7,
+    name: 'Kapelle',
+    lat: 47.333470,
+    lng: 9.411984,
+    info: '<p>Bar</p>',
+	cat: 3
+  }, {
+    id: 8,
+    name: 'Spielplatz Brauereiplatz',
+    lat: 47.330924,
+    lng: 9.410245,
+    info: '<p>Bar</p>',
+	cat: 4
+  }];			
 
   return {
     all: function() {
-      return friends;
+      return places;
     },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+    get: function(placeId) {
+      for (var i = 0; i < places.length; i++) {
+        if (places[i].id === parseInt(placeId)) {
+          return places[i];
+        }
+      }
+      return null;
     }
   }
 });

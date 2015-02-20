@@ -1,46 +1,109 @@
 // request the persistent file system
 angular.module('starter.controllers', [])
 
-.controller('MapCtrl', function($scope) {	
+.controller('MapCtrl', function($scope, Places) {	
+	
+	var map = L.map("map-canvas").setView([47.331611, 9.407531], 17);
 	/*
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
-		//alert(fileSystem.name);
-		//alert(fileSystem.root.name);
-	}, null);
+	$scope.places = Places.all();
 	*/
-	document.getElementById("info").innerHTML = '2<img src="/map/16/34477/42572.png" alt="Bild" />' ;
+	var places = Places.all();
 	
-	var map = L.map('map');
-	
-	//document.getElementById("info").innerHTML = cordova.file.applicationDirectory+'www/map/';
-	L.tileLayer('/map/{z}/{x}/{y}.png',{
-		maxZoom: 20  
-	}).addTo(map);			
-				
-		var map = L.map('map-canvas').setView([45.423, -75.679], 13);
-		//this works, but is online:
-		/*
-		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 18
-		}).addTo(map);
-		*/
-		//TODO build something to fall back to web if not found.
-		L.tileLayer('/map/{z}/{x}/{y}.png', {
-			maxZoom: 17
-		}).addTo(map);
-		
-		L.marker([45.423, -75.679]).addTo(map).bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-		
-		var popup = L.popup();
-		function onMapClick(e) {
-			popup
-			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString())
-			.openOn(map);
+	var customIcon = L.Icon.extend({
+		options: {
+			iconUrl: 'img/leaflet/marker-icon.png',
+			iconRetinaUrl: 'img/leaflet/marker-icon-2x.png',
+			iconSize: [25, 41],
+			iconAnchor: [22, 41],
+			popupAnchor: [-10, -42],
+			shadowUrl: 'img/leaflet/marker-shadow.png',
+			shadowRetinaUrl: 'img/leaflet/marker-shadow.png',
+			shadowSize: [41, 41],
+			shadowAnchor: [22, 41]
 		}
-		map.on('click', onMapClick);
+	});
+	
+	var iconCat1 = new customIcon({iconUrl: 'img/leaflet/icon-restaurant.png'}),
+		iconCat2 = new customIcon({iconUrl: 'img/leaflet/icon-culture.png'}),
+		iconCat3 = new customIcon({iconUrl: 'img/leaflet/icon-religion.png'}),
+		iconCat4 = new customIcon({iconUrl: 'img/leaflet/icon-family.png'}),
+		iconDefault = new customIcon({iconUrl: 'img/leaflet/icon-default.png'});
+		
+	var marker = [];
+	for (var i = 0; i < places.length; i++) {
+		var cat = places[i].cat;
+		if(!marker[cat]) {
+			marker[cat] = [];
+		}
+		icon = iconDefault;
+		switch (cat) {
+			case 1: 
+				icon = iconCat1;
+			break;
+			case 2: 
+				icon = iconCat2;
+			break;
+			case 3: 
+				icon = iconCat3;
+			break;
+			case 4: 
+				icon = iconCat4;
+			break;				
+		}
+		
+		marker[cat].push(L.marker([places[i].lat, places[i].lng], {icon: icon}).bindPopup(places[i].name+'<br/>'+places[i].info+'<br/><a title="Detail" href="#/tab/places/'+places[i].id+'">mehr</a>'));
+	}
+		
+	L.control.layers({
+		"Restaurants":L.layerGroup(marker[1]),
+		"Kultur": L.layerGroup(marker[2]),
+		"Kirchen": L.layerGroup(marker[3]),
+		"Familie": L.layerGroup(marker[4])
+	}).addTo(map);
+		
+	L.tileLayer('/map/{z}/{x}/{y}.png', {
+		minZoom: 16,
+		maxZoom: 20,
+		tms: true
+	}).addTo(map);
+	
+	
+		
+	/*
+	var popup = L.popup();
+	function onMapClick(e) {
+		popup
+		.setLatLng(e.latlng)
+		.setContent("You clicked the map at " + e.latlng.toString())
+		.openOn(map);
+	}
+	map.on('click', onMapClick);
+	*/
+	
+	map.locate({setView: true, maxZoom: 17});
+	
+
+	function onLocationFound(e) {
+		var radius = e.accuracy / 2;
+	
+		L.marker(e.latlng).addTo(map)
+			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+	
+		L.circle(e.latlng, radius).addTo(map);
+	}
+	
+	map.on('locationfound', onLocationFound);
+	function onLocationError(e) {
+		alert(e.message);
+	}
+	
+	map.on('locationerror', onLocationError);
 })
 	
+
+.controller('MapDetailCtrl', function($scope, $stateParams, Places) {
+  $scope.place = Places.get($stateParams.placeId);
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();

@@ -49,6 +49,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       }
     }
   })
+  
+  .state('tab.map-detail', {
+	  url: '/places/:placeId',
+	  views: {
+		'tab-map': {
+		  templateUrl: 'templates/map-detail.html',
+		  controller: 'MapDetailCtrl'
+		}
+	  }
+  })
 
   .state('tab.chats', {
       url: '/chats',

@@ -1,0 +1,15 @@
+<!--
+  This template loads for the 'tab.map-detail' state (app.js)
+  'place' is a $scope variable created in the MapCtrl controller (controllers.js)
+  The MapCtrl pulls data from the Places service (service.js)
+  The Places service returns an array of place data
+-->
+<ion-view view-title="{{place.name}}">
+  <ion-content class="padding">
+    <p>
+    {{place.name}}    
+    </p>
+    {{place.info}}
+    
+  </ion-content>
+</ion-view>
