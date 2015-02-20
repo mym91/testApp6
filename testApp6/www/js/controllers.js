@@ -11,8 +11,8 @@ angular.module('starter.controllers', [])
 	
 	var customIcon = L.Icon.extend({
 		options: {
-			iconUrl: 'img/leaflet/marker-icon.png',
-			iconRetinaUrl: 'img/leaflet/marker-icon-2x.png',
+			iconUrl: 'img/leaflet/icon-default.png',
+			iconRetinaUrl: 'img/leaflet/icon-default-2x.png',
 			iconSize: [25, 41],
 			iconAnchor: [22, 41],
 			popupAnchor: [-10, -42],
@@ -23,11 +23,11 @@ angular.module('starter.controllers', [])
 		}
 	});
 	
-	var iconCat1 = new customIcon({iconUrl: 'img/leaflet/icon-restaurant.png'}),
-		iconCat2 = new customIcon({iconUrl: 'img/leaflet/icon-culture.png'}),
-		iconCat3 = new customIcon({iconUrl: 'img/leaflet/icon-religion.png'}),
-		iconCat4 = new customIcon({iconUrl: 'img/leaflet/icon-family.png'}),
-		iconDefault = new customIcon({iconUrl: 'img/leaflet/icon-default.png'});
+	var iconCat1 = new customIcon({iconUrl: 'img/leaflet/icon-restaurant.png', iconRetinaUrl: 'img/leaflet/icon-restaurant-2x.png'}),
+		iconCat2 = new customIcon({iconUrl: 'img/leaflet/icon-culture.png', iconRetinaUrl: 'img/leaflet/icon-culture-2x.png'}),
+		iconCat3 = new customIcon({iconUrl: 'img/leaflet/icon-religion.png', iconRetinaUrl: 'img/leaflet/icon-religion-2x.png'}),
+		iconCat4 = new customIcon({iconUrl: 'img/leaflet/icon-family.png', iconRetinaUrl: 'img/leaflet/icon-family-2x.png'}),
+		iconDefault = new customIcon({iconUrl: 'img/leaflet/icon-default.png', iconRetinaUrl: 'img/leaflet/icon-default-2x.png'});
 		
 	var marker = [];
 	for (var i = 0; i < places.length; i++) {

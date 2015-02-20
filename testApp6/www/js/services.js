@@ -63,63 +63,72 @@ angular.module('starter.services', [])
     lat: 47.330841,
     lng: 9.409084,
     info: '<p>Café mit eigener Chocolaterie Manufactur</p>',
-	cat: 1
+	cat: 1,
+	tours: [1,4]
   }, {
     id: 1,
     name: 'Drei König',
     lat: 47.331019,
     lng: 9.408550,
     info: '<p>Café und Bäckerei</p>',
-	cat: 1
+	cat: 1,
+	tours: []
   }, {
     id: 2,
     name: 'Gass 17',
     lat: 47.330613,
     lng: 9.409521,
     info: '<p>Café und Bäckerei</p>',
-	cat: 1
+	cat: 1,
+	tours: []
   }, {
     id: 3,
     name: 'Mountain',
     lat: 47.330339,
     lng: 9.408706,
     info: '<p>Bar</p>',
-	cat: 1
+	cat: 1,
+	tours: []
   }, {
     id: 4,
     name: 'Landsgemeindeplatz',
     lat: 47.331611,
     lng: 9.407531,
     info: '<p>Bar</p>',
-	cat: 2
+	cat: 2,
+	tours: [2]
   }, {
     id: 5,
     name: 'Concordia',
     lat: 47.330615,
     lng: 9.407606,
     info: '<p>Bar</p>',
-	cat: 2
+	cat: 2,
+	tours: [2]
   }, {
     id: 6,
     name: 'Kirche St. Mauritius',
     lat: 47.330924,
     lng: 9.410245,
     info: '<p>Bar</p>',
-	cat: 3
+	cat: 3,
+	tours: [3]
   }, {
     id: 7,
     name: 'Kapelle',
     lat: 47.333470,
     lng: 9.411984,
     info: '<p>Bar</p>',
-	cat: 3
+	cat: 3,
+	tours: [3]
   }, {
     id: 8,
     name: 'Spielplatz Brauereiplatz',
-    lat: 47.330924,
-    lng: 9.410245,
-    info: '<p>Bar</p>',
-	cat: 4
+    lat: 47.329598,
+    lng: 9.413900,
+    info: '<p>Schöner, natürlicher Spielplatz.</p>',
+	cat: 4,
+	tours: [4]
   }];			
 
   return {
