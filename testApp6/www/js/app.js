@@ -60,21 +60,30 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 	  }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.tours', {
+      url: '/tours',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-tours': {
+          templateUrl: 'templates/tab-tours.html',
+          controller: 'ToursCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.tour-detail', {
+      url: '/tours/:tourId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-tours': {
+          templateUrl: 'templates/tour-detail.html',
+          controller: 'TourDetailCtrl'
+        }
+      }
+    })
+    .state('tab.tour-place-detail', {
+      url: '/tours/:tourId/place/:placeId',
+      views: {
+        'tab-tours': {
+          templateUrl: 'templates/tour-place-detail.html',
+          controller: 'TourPlaceDetailCtrl'
         }
       }
     })

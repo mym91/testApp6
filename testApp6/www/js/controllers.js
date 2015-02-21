@@ -1,14 +1,4 @@
-// request the persistent file system
-angular.module('starter.controllers', [])
 
-.controller('MapCtrl', function($scope, Places) {	
-	
-	var map = L.map("map-canvas").setView([47.331611, 9.407531], 17);
-	/*
-	$scope.places = Places.all();
-	*/
-	var places = Places.all();
-	
 	var customIcon = L.Icon.extend({
 		options: {
 			iconUrl: 'img/leaflet/icon-default.png',
@@ -27,8 +17,19 @@ angular.module('starter.controllers', [])
 		iconCat2 = new customIcon({iconUrl: 'img/leaflet/icon-culture.png', iconRetinaUrl: 'img/leaflet/icon-culture-2x.png'}),
 		iconCat3 = new customIcon({iconUrl: 'img/leaflet/icon-religion.png', iconRetinaUrl: 'img/leaflet/icon-religion-2x.png'}),
 		iconCat4 = new customIcon({iconUrl: 'img/leaflet/icon-family.png', iconRetinaUrl: 'img/leaflet/icon-family-2x.png'}),
-		iconDefault = new customIcon({iconUrl: 'img/leaflet/icon-default.png', iconRetinaUrl: 'img/leaflet/icon-default-2x.png'});
+		iconDefault = new customIcon({iconUrl: 'img/leaflet/icon-default.png', iconRetinaUrl: 'img/leaflet/icon-default-2x.png'}),
+		iconCurrent = new customIcon({iconUrl: 'img/leaflet/icon-default.png', iconRetinaUrl: 'img/leaflet/icon-default-2x.png'});
 		
+
+angular.module('starter.controllers', [])
+
+.controller('MapCtrl', function($scope, Places) {
+		
+	var map = L.map("map-canvas").setView([47.331611, 9.407531], 17);
+	
+	var places = Places.all();
+	
+
 	var marker = [];
 	for (var i = 0; i < places.length; i++) {
 		var cat = places[i].cat;
@@ -103,17 +104,65 @@ angular.module('starter.controllers', [])
 
 .controller('MapDetailCtrl', function($scope, $stateParams, Places) {
   $scope.place = Places.get($stateParams.placeId);
+	
+	var place =  $scope.place;
+	var map = L.map("map-canvas").setView([place.lat, place.lng], 17);
+	L.marker([place.lat, place.lng], {icon: iconDefault}).addTo(map);
+		
+	L.tileLayer('/map/{z}/{x}/{y}.png', {
+		minZoom: 16,
+		maxZoom: 20,
+		tms: true
+	}).addTo(map);
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+.controller('ToursCtrl', function($scope, Tours) {
+  $scope.tours = Tours.all();
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('TourDetailCtrl', function($scope, $stateParams, Tours, Places) {
+  $scope.tour = Tours.get($stateParams.tourId);
+  $scope.places = Places.getSelected($scope.tour.places);
+})
+
+.controller('TourPlaceDetailCtrl', function($scope, $stateParams, Tours, Places) {
+  $scope.tour = Tours.get($stateParams.tourId);
+  $scope.places = Places.getSelected($scope.tour.places);
+  $scope.place = $scope.places[$stateParams.placeId];
+  	var tour = $scope.tour;
+	var places = $scope.places;
+	var curPlace = $scope.place;
+	
+	var map = L.map("map-canvas").setView([curPlace.lat, curPlace.lng], 17);
+	L.tileLayer('/map/{z}/{x}/{y}.png', {
+		minZoom: 16,
+		maxZoom: 20,
+		tms: true
+	}).addTo(map);
+  
+	for (var i = 0; i < places.length; i++) {
+		icon = iconDefault;
+		if($scope.place.id == places[i].id) {
+			icon = iconCurrent;
+		} else {
+			switch (places[i].cat) {
+				case 1: 
+					icon = iconCat1;
+				break;
+				case 2: 
+					icon = iconCat2;
+				break;
+				case 3: 
+					icon = iconCat3;
+				break;
+				case 4: 
+					icon = iconCat4;
+				break;				
+			}
+		}
+		L.marker([places[i].lat, places[i].lng], {icon: icon}).bindPopup(places[i].name+'<br/>'+places[i].info+'<br/><a title="Detail" href="#/tab/places/'+places[i].id+'">mehr</a>').addTo(map);
+	}
+  	var polyline = L.polyline(tour.line, {color: 'red'}).addTo(map);
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {

@@ -1,47 +1,60 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Tours', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+  var tours = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    name: 'Familientour',
+    info: 'Ein Tagesprogramm für die ganze Familie',
+    description: 'Die Familientour bietet neben einem ',
+    img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+	places: [2,5,3],
+	line: [[47.330393,9.409626],[47.330503, 9.409831]]
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Andrew Jostlin',
-    lastText: 'Did you get the ice cream?',
-    face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
-  }, {
-    id: 3,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 4,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+    name: 'Kultureller Dorfrundgang',
+    info: 'Der klassische Dorfrundgang',
+    description: 'Die Familientour bietet neben einem ',
+    img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+	places: [6,5,4],	
+	line: [
+		[47.330748, 9.410069],	// Kirche 
+		[47.330750, 9.410835],	// Hechtplatz
+		[47.330344, 9.410672],	// Gerbergasse
+		[47.330204, 9.410484],	// Gerbergasse 
+		[47.330083, 9.410042],	// Gerbergasse
+		[47.330187, 9.409739],	// Gerbergasse-Poststrasse
+		[47.330094, 9.409578], 	// Poststrasse
+		[47.330004, 9.409107], 	// Salesis
+		[47.330116, 9.408796], 	// Postplatz-Unterer Gansbach
+		[47.330135, 9.408577],	// Unterer Gansbach
+		[47.330240, 9.408397],	// Unterer Gansbach
+		[47.330329, 9.407774],	// Unterer Gansbach
+		[47.330351, 9.407650],	// Engelgasse-Unterer Gansbach
+		[47.330737, 9.407699],	// Konkordia
+		[47.330855, 9.406820],	// Hampi Fässler
+		[47.330930, 9.406930],	// Engelgasse-Kronengarten
+		[47.331189, 9.406943],	// Kronengarten
+		[47.331445, 9.407265],	// Landsgemeindeplatz
+		[47.331458, 9.407530],	// Landsgemeindeplatz
+		[47.331192, 9.407752],	// Engelgasse-Hauptgasse
+		[47.331020, 9.408408],	// Hauptgasse Margreiter
+		[47.330795, 9.408756],	// Plattenegg
+		[47.330760, 9.409420],	// Hauptgasse
+		[47.330748, 9.410069]	// Kirche
+	]
   }];
 
   return {
     all: function() {
-      return chats;
+      return tours;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(tourId) {
+      for (var i = 0; i < tours.length; i++) {
+        if (tours[i].id === parseInt(tourId)) {
+          return tours[i];
         }
       }
       return null;
@@ -63,77 +76,96 @@ angular.module('starter.services', [])
     lat: 47.330841,
     lng: 9.409084,
     info: '<p>Café mit eigener Chocolaterie Manufactur</p>',
-	cat: 1,
-	tours: [1,4]
+	cat: 1
   }, {
     id: 1,
     name: 'Drei König',
     lat: 47.331019,
     lng: 9.408550,
     info: '<p>Café und Bäckerei</p>',
-	cat: 1,
-	tours: []
+	cat: 1
   }, {
     id: 2,
     name: 'Gass 17',
     lat: 47.330613,
     lng: 9.409521,
-    info: '<p>Café und Bäckerei</p>',
-	cat: 1,
-	tours: []
+    info: 'Am offenen Holzgrill über knisterndem Buchenholzfeuer, auf dem traditionellen Holzherd oder direkt aus dem Holzofen kreieren die Köche traumhafte Gerichte aus weitgehend regionalen Produkten. Alteingebrachte Rezepte vereinen sich mit modernen Elementen.',
+	cat: 1
   }, {
     id: 3,
     name: 'Mountain',
     lat: 47.330339,
     lng: 9.408706,
     info: '<p>Bar</p>',
-	cat: 1,
-	tours: []
+	cat: 1
   }, {
     id: 4,
     name: 'Landsgemeindeplatz',
     lat: 47.331611,
     lng: 9.407531,
-    info: '<p>Bar</p>',
-	cat: 2,
-	tours: [2]
+    info: 'historischer Platz',
+	description: 'Auf dem historischen Landsgemeindeplatz findet alljährlich die Landsgemeinde statt. Dabei wird über alle kantonalen Wahlgeschäfte und Sachvorlagen beraten und mit offenem Handmehr abgestimmt.',
+	cat: 2
   }, {
     id: 5,
-    name: 'Concordia',
+    name: 'Haus Konkordia',
     lat: 47.330615,
     lng: 9.407606,
-    info: '<p>Bar</p>',
-	cat: 2,
-	tours: [2]
+    info: 'historisches Patrizierhaus',
+	description: 'Besonders markant ist das Haus Konkordia an der Engelgasse, ein Patrizierhaus aus dem 17. Jahrhundert mit steilem Giebeldach. Eine reiche ornamental dekorierte Täferbemalung überzieht die ganze Südfassade. Auf der Hohlkehle der Dachuntersicht sind die acht Lebensalter dargestellt. Diese lebhafte, farblich dezente Bemalung geht auf August Schmid (1930) zurück.',
+	cat: 2
   }, {
     id: 6,
     name: 'Kirche St. Mauritius',
     lat: 47.330924,
     lng: 9.410245,
-    info: '<p>Bar</p>',
-	cat: 3,
-	tours: [3]
+    info: 'katholische Kirche',
+	description: 'Die stattliche katholische Kirche lässt mit ihrem Stilreichtum auf eine vielfältige Baugeschichte schliessen. Die erste Kirche auf diesem Platz ist bereits 1071 mit der Gründung der Pfarrei erwähnt. Sie ist dem St. Mauritius geweiht, deswegen wird sie von Einheimischen auch «de Moritz» genannt. Unweit der katholischen Kirche befindet sich auch die evangelische Kirche, dazwischen liegt der aussergewöhnlich schön angelegte Friedhof.',
+	cat: 3
   }, {
     id: 7,
-    name: 'Kapelle',
+    name: 'Lourdes Kapelle',
     lat: 47.333470,
     lng: 9.411984,
     info: '<p>Bar</p>',
-	cat: 3,
-	tours: [3]
+	cat: 3
   }, {
     id: 8,
     name: 'Spielplatz Brauereiplatz',
     lat: 47.329598,
     lng: 9.413900,
     info: '<p>Schöner, natürlicher Spielplatz.</p>',
-	cat: 4,
-	tours: [4]
-  }];			
-
+	cat: 4
+  }, {
+    id: 9,
+    name: 'Bazar Hersche',
+    lat: 47.330393,
+    lng: 9.409626,
+    info: '<p>Spielwarengeschäft</p>',
+	cat: 5
+  }, {
+    id: 10,
+    name: 'Lokal',
+    lat: 47.330503,
+    lng: 9.409831,
+    info: '<p>Gelateria</p>',
+	cat: 1
+  },];		
+  
   return {
     all: function() {
       return places;
+    },
+    getSelected: function(placesArr) {
+      var selectedPlaces = [];
+	  for (var x = 0; x < placesArr.length; x++)  {
+		  for (var i = 0; i < places.length; i++) {
+			if (placesArr[x] == places[i].id) {
+				selectedPlaces.push(places[i]);
+			}
+		  }
+	  }
+      return selectedPlaces;
     },
     get: function(placeId) {
       for (var i = 0; i < places.length; i++) {
