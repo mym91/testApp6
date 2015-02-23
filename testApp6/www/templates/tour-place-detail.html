@@ -6,13 +6,21 @@
 -->
 <ion-view view-title="{{place.name}}">
 
-  <ion-content class="padding">
+  <ion-content>
   
-  	<div id="map-canvas" style="min-height:200px; height:100%;" ></div> 
+  	<div id="map-tour-place-detail-canvas" style="min-height:200px; height:100%;" ></div> 
+    <div class="padding">
     <p>
-    {{place.info}}    
+    {{place.name}}    
     </p>
+    {{place.info}}
     {{place.description}}
+    </div>
+    <ion-slide-box>
+        <ion-slide ng-repeat="image in place.images">
+        	<img ng-src="data/places/{{place.id}}/{{image}}">
+        </ion-slide>
+    </ion-slide-box>
     
   </ion-content>
 </ion-view>

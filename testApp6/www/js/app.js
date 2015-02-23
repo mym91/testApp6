@@ -32,7 +32,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('intro', {
+    url: "/",
+    controller: 'IntroCtrl',
+    templateUrl: "templates/intro.html"	
+  })
+  
+  // setup an abstract state for the tabs directive
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
@@ -87,26 +94,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         }
       }
     })
-
-  .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
+	
   .state('tab.account', {
     url: '/account',
     views: {
@@ -118,6 +106,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/map');
+  $urlRouterProvider.otherwise('/');
 
 });

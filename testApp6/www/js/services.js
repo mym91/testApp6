@@ -75,28 +75,28 @@ angular.module('starter.services', [])
     name: 'Café Fässler',
     lat: 47.330841,
     lng: 9.409084,
-    info: '<p>Café mit eigener Chocolaterie Manufactur</p>',
+    info: 'Café mit eigener Chocolaterie Manufactur',
 	cat: 1
   }, {
     id: 1,
     name: 'Drei König',
     lat: 47.331019,
     lng: 9.408550,
-    info: '<p>Café und Bäckerei</p>',
+    info: 'Café und Bäckerei',
 	cat: 1
   }, {
     id: 2,
     name: 'Gass 17',
-    lat: 47.330613,
-    lng: 9.409521,
+    lat: 47.330600,
+    lng: 9.409540,
     info: 'Am offenen Holzgrill über knisterndem Buchenholzfeuer, auf dem traditionellen Holzherd oder direkt aus dem Holzofen kreieren die Köche traumhafte Gerichte aus weitgehend regionalen Produkten. Alteingebrachte Rezepte vereinen sich mit modernen Elementen.',
 	cat: 1
   }, {
     id: 3,
     name: 'Mountain',
-    lat: 47.330339,
-    lng: 9.408706,
-    info: '<p>Bar</p>',
+    lat: 47.330347,
+    lng: 9.408682,
+    info: 'Bar',
 	cat: 1
   }, {
     id: 4,
@@ -109,8 +109,8 @@ angular.module('starter.services', [])
   }, {
     id: 5,
     name: 'Haus Konkordia',
-    lat: 47.330615,
-    lng: 9.407606,
+    lat: 47.330658,
+    lng: 9.407531,
     info: 'historisches Patrizierhaus',
 	description: 'Besonders markant ist das Haus Konkordia an der Engelgasse, ein Patrizierhaus aus dem 17. Jahrhundert mit steilem Giebeldach. Eine reiche ornamental dekorierte Täferbemalung überzieht die ganze Südfassade. Auf der Hohlkehle der Dachuntersicht sind die acht Lebensalter dargestellt. Diese lebhafte, farblich dezente Bemalung geht auf August Schmid (1930) zurück.',
 	cat: 2
@@ -127,30 +127,39 @@ angular.module('starter.services', [])
     name: 'Lourdes Kapelle',
     lat: 47.333470,
     lng: 9.411984,
-    info: '<p>Bar</p>',
+    info: 'ein stiller Ort',
+	description: 'Sie wurde 1594 als Siechenkapelle St. Martin erbaut und befand sich damals noch ausserhalb des Dorfes. In der Nähe befanden sich das Sondersiechenhaus und das Armenhaus. Das Sondersiechenhaus wurde im 18. Jahrhundert abgebrochen und für das Armenhaus entstand zwischen 1901 und 1903 an der Sonnenhalde ein Neubau. Damit verlor die Kapelle ihre Bedeutung und wurde 1904 geschlossen. Der Lourdesverein übernahm danach den Bau und eröffnete 1936 die Kapelle als Lourdeskapelle neu.',
 	cat: 3
   }, {
     id: 8,
     name: 'Spielplatz Brauereiplatz',
-    lat: 47.329598,
-    lng: 9.413900,
-    info: '<p>Schöner, natürlicher Spielplatz.</p>',
+    lat: 47.329901,
+    lng: 9.413503,
+    info: 'Schöner, natürlicher Spielplatz.',
+	images: ['DSC_0295.JPG','DSC_0301.JPG','DSC_0308.JPG'],
 	cat: 4
   }, {
     id: 9,
     name: 'Bazar Hersche',
-    lat: 47.330393,
-    lng: 9.409626,
-    info: '<p>Spielwarengeschäft</p>',
+    lat: 47.330305,
+    lng: 9.409551,
+    info: 'Spielwarengeschäft',
 	cat: 5
   }, {
     id: 10,
     name: 'Lokal',
     lat: 47.330503,
-    lng: 9.409831,
-    info: '<p>Gelateria</p>',
+	lng: 9.409833,
+    info: 'Gelateria und Foccaceria',
 	cat: 1
-  },];		
+  }, {
+    id: 11,
+    name: 'Säntis Fashion',
+    lat: 47.330827,
+	lng: 9.408532,
+    info: 'Jeans & junge Mode',
+	cat: 5
+  }];		
   
   return {
     all: function() {
