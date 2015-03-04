@@ -17,7 +17,7 @@
 }
 
 .leaflet-touch .leaflet-control-locate a {
-	background-image: url(../img/leaflet/locate_touch.png);
+	background-image: url(../img/leaflet/locate.png);
 }
 
 .leaflet-control-locate.requesting a {

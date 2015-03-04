@@ -1,1 +1,25 @@
-/* Empty. Add your own CSS if you like */
+
+
+/* ----- PANORAMA ----- */
+.panorama-container {
+	position:relative;
+}
+.panorama-image {
+	position:absolute;
+	left:0;
+}
+
+.panorama-nav {
+	width:50%;
+	height:100%;
+	position:absolute;
+	top:0;
+}
+
+.panorama-nav-left {
+	left:0;
+}
+
+.panorama-nav-right {
+	right:0;
+}

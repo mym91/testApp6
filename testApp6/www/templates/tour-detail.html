@@ -6,18 +6,20 @@
 -->
 <ion-view view-title="{{tour.name}}">
 
-  <ion-content class="padding">
-    <img ng-src="{{tour.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{tour.info}}
-    </p>
-    <ion-list>
-    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="place in places" type="item-text-wrap" href="#/tab/tours/{{tour.id}}/place/{{place.id}}">
-    	<h2>{{place.name}}</h2>
-        <p>{{place.info}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-      </ion-item>
-    </ion-list>
+  <ion-content>
+ 	<div data-tap-disabled="true">
+  		<div id="map-tour-detail-canvas" style="min-height:200px; height:100%;"></div> 
+    </div>
+    <div class="padding">
+    <p>{{tour.info}}</p>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="place in places" type="item-text-wrap" href="#/tab/tours/{{tour.id}}/place/{{place.id}}">
+                <img ng-src="data/places/{{place.id}}/image.jpg">
+                <h2>{{place.name}}</h2>
+                <p>{{place.info}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>            
+            </ion-item>
+        </ion-list>
+    </div>
   </ion-content>
 </ion-view>

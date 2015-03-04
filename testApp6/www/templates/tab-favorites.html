@@ -1,0 +1,13 @@
+<ion-view view-title="Favoriten"  cache-view="false">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="favorite in favorites" type="item-text-wrap" href="#/tab/places/{{favorite.id}}">
+        <img ng-src="data/places/{{favorite.id}}/image.jpg">
+        <h2>{{favorite.title}}</h2>
+        <p>{{favorite.name}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

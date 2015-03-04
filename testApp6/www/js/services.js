@@ -9,16 +9,14 @@ angular.module('starter.services', [])
     name: 'Familientour',
     info: 'Ein Tagesprogramm für die ganze Familie',
     description: 'Die Familientour bietet neben einem ',
-    img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-	places: [2,5,3],
+	places: [0,8,9,10],
 	line: [[47.330393,9.409626],[47.330503, 9.409831]]
   }, {
     id: 1,
     name: 'Kultureller Dorfrundgang',
     info: 'Der klassische Dorfrundgang',
-    description: 'Die Familientour bietet neben einem ',
-    img: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-	places: [6,5,4],	
+    description: 'Lernen sie die schönsten, historischen Gebäude und Plätze kennen.',
+	places: [6,13,14,5,15,4,16,17],	
 	line: [
 		[47.330748, 9.410069],	// Kirche 
 		[47.330750, 9.410835],	// Hechtplatz
@@ -59,7 +57,7 @@ angular.module('starter.services', [])
       }
       return null;
     }
-  }
+  };
 })
 
 /**
@@ -76,6 +74,7 @@ angular.module('starter.services', [])
     lat: 47.330841,
     lng: 9.409084,
     info: 'Café mit eigener Chocolaterie Manufactur',
+	video: 'video',
 	cat: 1
   }, {
     id: 1,
@@ -159,6 +158,54 @@ angular.module('starter.services', [])
 	lng: 9.408532,
     info: 'Jeans & junge Mode',
 	cat: 5
+  }, {
+    id: 12,
+    name: 'Freudenberg',
+    lat: 47.325533,
+	lng: 9.403989,
+    info: 'familienfreundliches Aussichts-Restaurant',
+	pano: 'panorama.jpg',
+	cat: 1
+  }, {
+    id: 13,
+    name: 'Schloss',
+    lat: 47.329965,
+	lng: 9.409490,
+    info: '',
+	description: 'Dem ummauerten sogenannten Schloss im Osten des Postplatzes kommt seit jeher in der appenzellischen Dorfarchitektur eine einzigartige Stellung zu. Es ist seit 1780 im Privatbesitz der Familie Sutter und wird auch von ihr bewohnt. Die Innenräume sind nicht öffentlich zugänglich. Direkt angrenzend an das Schloss liegt das Kloster Maria der Engel. Die Schwesterngemeinschaft baute in den frühen 80er-Jahren des 17. Jahrhunderts dieses Kloster.',
+	cat: 2
+  }, {
+    id: 14,
+    name: 'Haus Salesis',
+    lat: 47.329904,
+	lng: 9.408921,
+    info: 'Haus aus dem späten 16. Jahrhundert',
+	description: 'Das Haus Salesis am Postplatz ist als einziger freistehender Steinbau nebst dem Schloss ein markanter Zeuge dörflichen Patriziats. Der dreigeschossige, massige Baukubus aus verputztem Bruchsteinmauerwerk mit breitem Satteldach stammt aus der grossen Wiederaufbauzeit im späten 16. Jahrhundert.',
+	cat: 2
+  }, {
+    id: 15,
+    name: 'Haus Hampi Fässler',
+    lat: 47.330791,
+	lng: 9.406400,
+    info: 'Riegelhaus',
+	description: 'Das Haus Hampi Fässlers an der Kaustrasse bildete ursprünglich den Abschluss des alten Dorfkerns. Die sichtbare Riegelkonstruktion zieren barocke Fensterrahmen und von Adalbert Fässler dekorativ bemalte Zugladenkästen.',
+	cat: 2
+  }, {
+    id: 16,
+    name: 'Kappelle Heiligkreuz',
+    lat: 47.331214,
+	lng: 9.407977,
+    info: 'Kappelle',
+	description: 'Die Heiligkreuzkapelle an der Hauptgasse wurde nach dem verheerenden Dorfbrand 1560 wieder aufgebaut. Die Glasfenster mit den fünf Geheimnissen des schmerzhaften Rosenkranzes schuf Ferdinand Gehr 1964. ',
+	cat: 2
+  }, {
+    id: 17,
+    name: 'Rathaus',
+    lat: 47.330838,
+	lng: 9.409705,
+    info: '',
+	description: 'Die Hauptgasse mit ihren schmucken, farbenfrohen Häusern ist immer ein einzigartiger Anziehungspunkt für die Gäste. Das imposante Rathaus mir der Fassadenmalerei von August Schmid aus Diessenhofen (1928) und das angebaute «Buherre Hanisefs» bilden den Abschluss des Rundgangs. ',
+	cat: 2
   }];		
   
   return {
@@ -184,5 +231,57 @@ angular.module('starter.services', [])
       }
       return null;
     }
-  }
-});
+  };
+})
+
+.factory('Favorites', function($localstorage) {
+	if($localstorage.getObject('Favorites')) {
+		var favorites = $localstorage.getObject('Favorites');
+	} else {
+		var favorites = [];
+	}
+	return {
+		all: function() {
+			return favorites;
+		},
+		add: function(favorite) {
+			//console.log(favorites);
+			favorites[favorite.id] = favorite;
+		//	favorites.push(favorite);
+			$localstorage.setObject('Favorites', favorites);
+		},
+		remove: function(favorite) {
+			//favorites.splice(favorite, 1);
+			delete favorites[favorite.id];
+			$localstorage.setObject('Favorites', favorites);
+		},
+		get: function(favoriteId) {
+			return favorites[favoriteId];
+			/*
+			for (var i = 0; i < favorites.length; i++) {
+				if (favorites[i].id === parseInt(favoriteId)) {
+					return favorites[i];
+				}
+			}
+			return null;
+			*/
+		}
+	};
+})
+
+.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  };
+}]);

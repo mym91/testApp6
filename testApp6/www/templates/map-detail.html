@@ -5,22 +5,30 @@
   The Places service returns an array of place data
 -->
 <ion-view view-title="{{place.name}}">
-
+    <ion-nav-buttons side="secondary">
+    	<button class="button button-icon icon ion-heart" ng-click="addToFavorites()" ng-show="!isFavorite"></button>
+    	<button class="button button-icon icon ion-heart-broken" ng-click="removeFromFavorites()" ng-show="isFavorite"></button>
+    </ion-nav-buttons>
   <ion-content>
-  
-  	<div id="map-detail-canvas" style="min-height:200px; height:100%;" ></div> 
+  	<div data-tap-disabled="true">
+  		<div id="map-detail-canvas" style="min-height:200px; height:100%;" ></div> 
+    </div> 
     <div class="padding">
-    <p>
-    {{place.name}}    
-    </p>
-    {{place.info}}
-    {{place.description}}
+        <h1>{{place.name}}</h1>
+        {{place.info}}
+        {{place.description}}
     </div>
-    <ion-slide-box>
-        <ion-slide ng-repeat="image in place.images">
-        	<img ng-src="data/places/{{place.id}}/{{image}}">
-        </ion-slide>
-    </ion-slide-box>
+    <ion-scroll ng-if="place.pano" zooming="true" direction="x" style="width: 100%; height: 300px">
+    	<div style="width: 2485px; height: 576px; background: url('data/places/{{place.id}}/{{place.pano}}') repeat"></div>
+    </ion-scroll>
+	
+	<div ng-if="place.images">
+        <ion-slide-box>
+            <ion-slide ng-repeat="image in place.images">
+        		<img width="100%" ng-src="data/places/{{place.id}}/{{image}}">
+            </ion-slide>
+        </ion-slide-box>
+	</div>
     
   </ion-content>
 </ion-view>

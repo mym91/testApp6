@@ -1,26 +1,37 @@
 <!--
-  This template loads for the 'tab.map-detail' state (app.js)
+  This template loads for the 'tab.place-detail' state (app.js)
   'place' is a $scope variable created in the MapCtrl controller (controllers.js)
   The MapCtrl pulls data from the Places service (service.js)
   The Places service returns an array of place data
 -->
 <ion-view view-title="{{place.name}}">
+    <ion-nav-buttons side="secondary">
+    	<button class="button button-icon icon ion-heart" ng-click="addToFavorites()"></button>
+    </ion-nav-buttons>
 
   <ion-content>
-  
-  	<div id="map-tour-place-detail-canvas" style="min-height:200px; height:100%;" ></div> 
+ 	<div id="map-tour-place-detail-container" data-tap-disabled="true">
+  		<div id="map-tour-place-detail-canvas" style="min-height:200px; height:100%;"></div> 
+    </div>
     <div class="padding">
-    <p>
-    {{place.name}}    
-    </p>
+    <h1>{{place.name}}</h1>
     {{place.info}}
     {{place.description}}
     </div>
-    <ion-slide-box>
+    <ion-scroll ng-if="place.pano" zooming="true" direction="x" style="width: 100%; height: 300px">
+    	<div style="width: 2485px; height: 576px; background: url('data/places/{{place.id}}/{{place.pano}}') repeat"></div>
+    </ion-scroll>
+    <ion-slide-box ng-if="place.images">
         <ion-slide ng-repeat="image in place.images">
-        	<img ng-src="data/places/{{place.id}}/{{image}}">
+            <img width="100%" ng-src="data/places/{{place.id}}/{{image}}">
         </ion-slide>
-    </ion-slide-box>
+	</ion-slide-box>
     
+    <div ng-if="place.video" class="padding" data-tap-disabled="true">
+        <video width="320" height="240" controls>
+            <source src="data/places/0/video.mp4">
+            Your browser does not support the video.
+        </video> 
+    </div>
   </ion-content>
 </ion-view>
